@@ -1,0 +1,44 @@
+/**
+ * Copyright (c) 2022 tapiocode
+ * https://github.com/tapiocode
+ * MIT License
+ */
+
+/**
+ * All styles can be overwritten locally.
+ *
+ * CSS variables here are set in the JS file, and they can also be referenced outside of this file.
+ *
+ * Based on skewing pseudo elements around the target element(s).
+ * See: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skewY
+ */
+.wraparound {
+  color: #333;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 calc(var(--elem-height) * -1px);
+  padding: 0 calc(var(--elem-height) * 1px);
+  box-shadow: 0 calc(var(--diff-from-zero-level) * -14px) 4px -8px #0006;
+}
+.wraparound::before, .wraparound::after {
+  content: '';
+  background-color: var(--elem-background-color);
+  filter: brightness(65%);
+  position: absolute;
+  top: 0;
+  width: calc(var(--elem-height) * 1px);
+  height: calc(var(--elem-height) * 1px);
+  z-index: -1;
+}
+.wraparound::before {
+  left: 0;
+  transform-origin: left;
+  transform: skewY(calc(var(--skew-deg) * 1deg));
+}
+.wraparound::after {
+  right: 0;
+  transform-origin: right;
+  transform: skewY(calc(var(--skew-deg) * -1deg));
+}
